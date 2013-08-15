@@ -1,0 +1,38 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OSSItPopular.Tests", "OSSItPopular.Tests\OSSItPopular.Tests.csproj", "{46F5F78F-9ECF-496D-9957-488BCB58B5E6}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{F9A15D95-07C7-4B54-98A1-3421DF33CB98}"
+	ProjectSection(SolutionItems) = preProject
+		.nuget\NuGet.Config = .nuget\NuGet.Config
+		.nuget\NuGet.exe = .nuget\NuGet.exe
+		.nuget\NuGet.targets = .nuget\NuGet.targets
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OSSItPopular.Web", "OSSItPopular.Web\OSSItPopular.Web.csproj", "{03760F24-70D1-45C7-B760-DB879778BB44}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{D3E44372-BAF1-45CF-A260-0AA21EF472F2}"
+	ProjectSection(SolutionItems) = preProject
+		SolutionInfo.cs = SolutionInfo.cs
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{46F5F78F-9ECF-496D-9957-488BCB58B5E6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{46F5F78F-9ECF-496D-9957-488BCB58B5E6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{46F5F78F-9ECF-496D-9957-488BCB58B5E6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{46F5F78F-9ECF-496D-9957-488BCB58B5E6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{03760F24-70D1-45C7-B760-DB879778BB44}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{03760F24-70D1-45C7-B760-DB879778BB44}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{03760F24-70D1-45C7-B760-DB879778BB44}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{03760F24-70D1-45C7-B760-DB879778BB44}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

@@ -7,11 +7,7 @@ namespace OSSItPopular.Web.Modules
     {
         public GitHubModule(IGitHubClient client)
         {
-            Get["/search"] = _ =>
-                {
-                    var name = Request.Query.Name;
-                    return client.SearchRepos(name);
-                };
+            Get["/search"] = _ => client.SearchRepos(Request.Query.Name);
         }
     }
 }

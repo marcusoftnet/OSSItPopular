@@ -1,13 +1,13 @@
-﻿using System.Collections.Generic;
-using Nancy.Testing;
+using System.Collections.Generic;
 using FakeItEasy;
+using Nancy.Testing;
 using OSSItPopular.Web.Models;
 using OSSItPopular.Web.Modules;
 using OSSItPopular.Web.Support;
 using Should.Fluent;
 using Xunit;
 
-namespace OSSItPopular.Tests
+namespace OSSItPopular.Tests.Modules
 {
     public class GitHubSearchTests
     {
@@ -16,13 +16,12 @@ namespace OSSItPopular.Tests
         {
             // Arrange
             var fakeGitHubClient = A.Fake<IGitHubClient>();
-            string searchString = "NancyFx";
+            var searchString = "NancyFx";
             A.CallTo(() => fakeGitHubClient.SearchRepos(searchString)).Returns(
                 new GithubRepositorySearchResult
                 {
                     NumberOfSearchResult = 3,
-                    Repositories = new List<GithubRepository>
-                        {
+                    Repositories = new List<GithubRepository> {
                             new GithubRepository {Id = "1", Name = searchString + "1"},
                             new GithubRepository {Id = "2", Name = searchString + "2"},
                             new GithubRepository {Id = "3", Name = searchString + "3"},

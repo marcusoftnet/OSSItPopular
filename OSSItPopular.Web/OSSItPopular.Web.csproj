@@ -45,6 +45,9 @@
     <Reference Include="Nancy">
       <HintPath>..\packages\Nancy.0.18.0\lib\net40\Nancy.dll</HintPath>
     </Reference>
+    <Reference Include="RestSharp">
+      <HintPath>..\packages\RestSharp.104.1\lib\net4\RestSharp.dll</HintPath>
+    </Reference>
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
@@ -70,7 +73,12 @@
     <Compile Include="..\SolutionInfo.cs">
       <Link>Properties\SolutionInfo.cs</Link>
     </Compile>
+    <Compile Include="Models\GithubRepository.cs" />
+    <Compile Include="Models\GithubRepositorySearchResult.cs" />
+    <Compile Include="Modules\GitHubModule.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Support\GitHubClient.cs" />
+    <Compile Include="Support\IGitHubClient.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

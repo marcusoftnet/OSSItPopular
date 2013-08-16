@@ -1,7 +1,9 @@
 ﻿using System.Collections.Generic;
-using Nancy;
 using Nancy.Testing;
 using FakeItEasy;
+using OSSItPopular.Web.Models;
+using OSSItPopular.Web.Modules;
+using OSSItPopular.Web.Support;
 using Should.Fluent;
 using Xunit;
 
@@ -44,36 +46,6 @@ namespace OSSItPopular.Tests
             // Assert
             response.NumberOfSearchResult.Should().Equal(3);
 
-        }
-    }
-
-    public class GithubRepository
-    {
-        public string Id { get; set; }
-        public string Name { get; set; }
-    }
-
-
-    public interface IGitHubClient
-    {
-        GithubRepositorySearchResult SearchRepos(string searchString);
-    }
-
-    public class GithubRepositorySearchResult
-    {
-        public List<GithubRepository> Repositories { get; set; }
-        public int NumberOfSearchResult { get; set; }
-    }
-
-    public class GitHubModule : NancyModule
-    {
-        public GitHubModule(IGitHubClient client)
-        {
-            Get["/search"] = _ =>
-                {
-                    var name = Request.Query.Name;
-                    return client.SearchRepos(name);
-                };
         }
     }
 }

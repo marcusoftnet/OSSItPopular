@@ -22,4 +22,4 @@ _[Rr]e[Ss]harper.*/
 *.ncrunchsolution
 *.dotCover
 packages
-*.[Dd]ebug.config
+*.Debug.config

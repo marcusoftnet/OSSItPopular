@@ -1,5 +1,4 @@
-﻿using Newtonsoft.Json;
-using OSSItPopular.Web.Models;
+﻿using OSSItPopular.Web.Models;
 using Should.Fluent;
 using Xunit;
 

@@ -8,7 +8,7 @@ namespace OSSItPopular.Web.Modules
         public GitHubModule(IGitHubClient client) : base("/GitHub")
         {
             Get["/search"] = _ => client.SearchRepos(Request.Query.Name);
-            Get["/Stats/{Id}"] = parameters => client.GetGitHubStats(parameters.Id);
+            Get["/Stats/"] = _ => client.GetGitHubStats(Request.Query.FullName);
         }
     }
 }

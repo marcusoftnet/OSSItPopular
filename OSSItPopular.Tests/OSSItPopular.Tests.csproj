@@ -69,7 +69,7 @@
     </Compile>
     <Compile Include="Models\CreateGitHubSearchResultTests.cs" />
     <Compile Include="Models\GitHubRepositoryDetailsTests.cs" />
-    <Compile Include="Modules\GitHubSearchTests.cs" />
+    <Compile Include="Modules\GitHubModuleTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

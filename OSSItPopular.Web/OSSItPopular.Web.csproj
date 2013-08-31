@@ -81,6 +81,7 @@
     <Compile Include="..\SolutionInfo.cs">
       <Link>Properties\SolutionInfo.cs</Link>
     </Compile>
+    <Compile Include="Models\GitHubRepositoryDetails.cs" />
     <Compile Include="Models\GithubRepository.cs" />
     <Compile Include="Models\GithubRepositorySearchResult.cs" />
     <Compile Include="Modules\GitHubModule.cs" />

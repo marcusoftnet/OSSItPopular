@@ -5,5 +5,6 @@ namespace OSSItPopular.Web.Support
     public interface IGitHubClient
     {
         GithubRepositorySearchResult SearchRepos(string searchString);
+        GitHubRepositoryDetails GetGitHubStats(string fullName);
     }
 }

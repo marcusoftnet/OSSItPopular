@@ -1,16 +1,20 @@
 <!doctype html>
-<html>
-<!-- Angular -->
-<script type="text/javascript" src="http://code.angularjs.org/angular-1.0.0rc4.min.js"></script>
-<script type="text/javascript" src="http://code.angularjs.org/angular-resource-1.0.0rc4.min.js"></script>
+<head>
+    <title>OSS It Popular - real OSS numbers</title>
+    <!-- JQuery -->
+    <script type="text/javascript" src="http://codeorigin.jquery.com/jquery-1.10.2.min.js"></script>
 
-<!-- Bootstrap -->
-<link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.0-rc1/css/bootstrap.min.css">
-<script type="text/javascript" src="http://netdna.bootstrapcdn.com/bootstrap/3.0.0-rc1/js/bootstrap.min.js"></script>
+    <!-- Angular -->
+    <script type="text/javascript" src="http://code.angularjs.org/angular-1.0.0rc4.min.js"></script>
+    <script type="text/javascript" src="http://code.angularjs.org/angular-resource-1.0.0rc4.min.js"></script>
 
-<!-- application files -->
-<script type="text/javascript" src="content/app.js"></script>
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.0-rc1/css/bootstrap.min.css">
+    <script type="text/javascript" src="http://netdna.bootstrapcdn.com/bootstrap/3.0.0-rc1/js/bootstrap.min.js"></script>
 
+    <!-- application files -->
+    <script type="text/javascript" src="content/app.js"></script>
+</head>
 <body data-ng-app="OssItPopular">
 
     <div class="container">
@@ -26,7 +30,10 @@
                     </div>
                     <button type="button" class="btn btn-primary" data-ng-click="searchRepos()">Search</button>
                     <ul>
-                        <li ng-repeat="repo in repositories"><a href="{{repo.Url}}" data-ng-click="getAllData({{repo.name}}">{{repo.Name}}</a></li>
+                        <li data-ng-repeat="repo in repositories">
+                            <a href="{{repo.Url}}">{{repo.FullName}}</a>
+                            <button type="button" class="btn btn-success" data-ng-click="getAllData(repo)">Is it popular?</button>
+                        </li>
                     </ul>
                 </div>
             </form>
@@ -82,4 +89,4 @@
     </div>
     <!-- /container -->
 </body>
-</html>
+</head>

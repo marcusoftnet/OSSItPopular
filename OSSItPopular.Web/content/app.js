@@ -5,19 +5,21 @@ ossItPopularApp.controller('GitHubController', ['$scope', '$http',
         $scope.searchRepos = function () {
             $http({
                 method: 'GET',
-                url: 'http://localhost:2342/search/?name=' + $scope.searchString
+                url: '/GitHub/Search/?name=' + $scope.searchString
             }).
             success(function (data) {
-                console.log(data.Repositories);
                 $scope.repositories = data.Repositories;
-            }).
-            error(function (data) {
-                alert(data);
             });
         };
         
-        $scope.getAllData = function(reponame) {
-            alert(reponame);
+        $scope.getAllData = function(repo) {
+            $http({
+                method: 'GET',
+                url: '/GitHub/Stats/' + repo.FullNames
+            }).
+             success(function (data) {
+                 console.log(data);
+             });
         };
     }
 ]);

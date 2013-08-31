@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Newtonsoft.Json;
 
 namespace OSSItPopular.Web.Models
 {
@@ -7,21 +8,25 @@ namespace OSSItPopular.Web.Models
         public List<GithubRepository> Repositories { get; set; }
         public int NumberOfSearchResult { get; set; }
 
-        public GithubRepositorySearchResult()
+        public static GithubRepositorySearchResult CreateFromJSON(string json)
         {
-        }
+            var data = JsonConvert.DeserializeObject<dynamic>(json);
 
-        public static GithubRepositorySearchResult Create(dynamic indata)
-        {
             var result = new GithubRepositorySearchResult
             {
-                NumberOfSearchResult = indata.total_count,
+                NumberOfSearchResult = data.total_count,
                 Repositories = new List<GithubRepository>()
             };
 
-            if (indata.items != null)
-                foreach (var item in indata.items)
-                    result.Repositories.Add(new GithubRepository { Id = item.id, Name = item.name });
+            if (data.items != null)
+                foreach (var repo in data.items)
+                    result.Repositories.Add(new GithubRepository
+                        {
+                            Id = repo.id,
+                            Name = repo.name,
+                            Url = repo.html_url,
+                            FullName = repo.full_name
+                        });
 
 
             return result;

@@ -8,6 +8,7 @@ namespace OSSItPopular.Web.Support
     public class GitHubClient : IGitHubClient
     {
         private const string SEARCH_REQUEST_STRING = "/search/repositories?q={0}+in%3Aname&sort=stars";
+        private const string DETAILS_REQUEST_STRING = "/search?q=%40{0}&type=Repositories";
         private readonly RestClient _client;
 
         private static string OAuthToken { get { return ConfigurationManager.AppSettings["GitHubOAuthToken"]; } }
@@ -21,24 +22,43 @@ namespace OSSItPopular.Web.Support
 
         public GithubRepositorySearchResult SearchRepos(string searchString)
         {
-            var response = _client.Execute<dynamic>(CreateSearchRequest(searchString));
+            //var response = _client.Execute<dynamic>(CreateSearchRequest(searchString));
+            var json = _client.Execute(CreateSearchRequest(searchString)).Content;
 
-            return new GithubRepositorySearchResult
-                {
-                    NumberOfSearchResult = response.Data.total_count,
-                    Repositories = ParseRepositories(response)
-                };
+
+            return GithubRepositorySearchResult.CreateFromJSON(json);
+                //{
+                //    NumberOfSearchResult = response.Data.total_count,
+                //    Repositories = ParseRepositories(response)
+                //};
 
         }
 
-        private static List<GithubRepository> ParseRepositories(IRestResponse<dynamic> response)
+        public GitHubRepositoryDetails GetGitHubStats(string fullName)
         {
-            var repos = new List<GithubRepository>();
-            foreach (var repo in response.Data.items)
-                repos.Add(new GithubRepository { Id = repo.id, Name = repo.full_name, Url = repo.html_url });
+            var response = _client.Execute(CreateDetailsRequest(fullName));
 
-            return repos;
+            return null;
         }
+
+        private IRestRequest CreateDetailsRequest(string repositoryFullName)
+        {
+            var request = new RestRequest(string.Format(SEARCH_REQUEST_STRING, repositoryFullName), Method.GET);
+            request.AddHeader("Accept", "application/vnd.github.preview");
+            return request;
+        }
+
+        //private static List<GithubRepository> ParseRepositories(IRestResponse<dynamic> response)
+        //{
+        //    var repos = new List<GithubRepository>();
+        //    foreach (var repo in response.Data.items)
+        //        repos.Add(GithubRepositorySearchResult.Create()
+        //            {
+        //                Id = repo.id, Name = repo.full_name, Url = repo.html_url, FullName = repo.full_name
+        //            });
+
+        //    return repos;
+        //}
 
         private static RestRequest CreateSearchRequest(string searchString)
         {

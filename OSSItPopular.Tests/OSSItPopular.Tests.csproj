@@ -68,6 +68,7 @@
       <Link>Properties\SolutionInfo.cs</Link>
     </Compile>
     <Compile Include="Models\CreateGitHubSearchResultTests.cs" />
+    <Compile Include="Models\GitHubRepositoryDetailsTests.cs" />
     <Compile Include="Modules\GitHubSearchTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

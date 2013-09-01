@@ -7,10 +7,10 @@ namespace OSSItPopular.Web.Models
         public static GitHubRepositoryDetails CreateFromJSON(string json)
         {
             var data = JsonConvert.DeserializeObject<dynamic>(json).items[0]; //HACK: Voj voj - this is a bit ugly
-            
+
             return new GitHubRepositoryDetails
                 {
-                    FullName =  data.full_name,
+                    FullName = data.full_name,
                     Score = data.score,
                     NumberOfWatchers = data.watchers_count,
                     NumberOfOpenIssues = data.open_issues_count,

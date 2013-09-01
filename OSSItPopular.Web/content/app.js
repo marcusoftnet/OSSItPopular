@@ -15,10 +15,11 @@ ossItPopularApp.controller('GitHubController', ['$scope', '$http',
         $scope.getAllData = function(repo) {
             $http({
                 method: 'GET',
-                url: '/GitHub/Stats/' + repo.FullNames
+                url: '/GitHub/Stats/?FullName=' + repo.Name
             }).
              success(function (data) {
                  console.log(data);
+                 $scope.gitHubDetails = data;
              });
         };
     }

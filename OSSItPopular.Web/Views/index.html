@@ -15,11 +15,11 @@
     <!-- application files -->
     <script type="text/javascript" src="content/app.js"></script>
 </head>
-<body data-ng-app="OssItPopular">
+<body data-ng-app="OssItPopular" data-ng-controller="GitHubController">
 
     <div class="container">
 
-        <div class="jumbotron" data-ng-controller="GitHubController">
+        <div class="jumbotron">
             <h1>Oss it popular?</h1>
             <p>A single page that helps you to answer the question if a OSS project is popular, used, known</p>
             <form class="form-inline">
@@ -48,7 +48,15 @@
                         <div class="panel-heading">
                             <h3 class="panel-title">GitHub Stats</h3>
                         </div>
-                        Panel content
+                        <strong>{{gitHubDetails.FullName}}</strong>
+                        <ul>
+                            <li>Score: {{gitHubDetails.Score}}</li>
+                            <li>Forks: {{gitHubDetails.NumberOfForks}}</li>
+                            <li>Wiki: {{gitHubDetails.HasWiki}}</li>
+                            <li>Number of watchers: {{gitHubDetails.NumberOfWatchers}}</li>
+                            <li>Has issues: {{gitHubDetails.HasIssues}}</li>
+                            <li>Number of issues: {{gitHubDetails.NumberOfOpenIssues}}</li>
+                        </ul>
                     </div>
                 </div>
                 <div class="col-lg-6">

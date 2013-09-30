@@ -1,27 +1,10 @@
-var ossItPopularApp = angular.module('OssItPopular', []);
+﻿var OssItPopularApp = angular.module('OssItPopular', ['OssItPopular.services']); 
+  
+    /* For eventual routing later 
+    .config(['$routeProvider', function ($routeProvider) {
 
-ossItPopularApp.controller('GitHubController', ['$scope', '$http',
-    function ($scope, $http) {
-        $scope.searchRepos = function () {
-            $http({
-                method: 'GET',
-                url: '/GitHub/Search/?name=' + $scope.searchString
-            }).
-            success(function (data) {
-                $scope.repositories = data.Repositories;
-            });
-        };
-        
-        $scope.getAllData = function(repo) {
-            $http({
-                method: 'GET',
-                url: '/GitHub/Stats/?FullName=' + repo.Name
-            }).
-             success(function (data) {
-                 console.log(data);
-                 $scope.gitHubDetails = data;
-             });
-        };
-    }
-]);
-
+      $routeProvider.when('/', {
+          templateUrl: '/content/app/partials/search.html',
+          controller: SearchController
+      });
+  }]);*/

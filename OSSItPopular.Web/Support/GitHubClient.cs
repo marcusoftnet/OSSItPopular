@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using System.Configuration;
 using OSSItPopular.Web.Models;
 using RestSharp;

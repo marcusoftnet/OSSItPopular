@@ -8,7 +8,7 @@ namespace OSSItPopular.Tests.Models
     {
         private NuGetSearchResult _parsedResult;
         private NuGetPackage _package;
-        private const string JSON = "{\"d\":{\"results\":[{\"__metadata\":{\"id\":\"https://www.nuget.org/api/v2/Packages(Id='ShouldFluent',Version='1.1.12.0')\",\"uri\":\"https://www.nuget.org/api/v2/Packages(Id='ShouldFluent',Version='1.1.12.0')\",\"type\":\"NuGetGallery.V2FeedPackage\",\"edit_media\":\"https://www.nuget.org/api/v2/Packages(Id='ShouldFluent',Version='1.1.12.0')/$value\",\"media_src\":\"https://www.nuget.org/api/v2/package/ShouldFluent/1.1.12.0\",\"content_type\":\"application/zip\"},\"Id\":\"ShouldFluent\",\"Version\":\"1.1.12.0\",\"Authors\":\"Tim Scott\",\"Copyright\":null,\"Created\":\"\\/Date(1294387219667)\\/\",\"Dependencies\":\"\",\"Description\":\"The Should Assertion Library provides a set of extension methods for test assertions for AAA and BDD style tests. It provides assertions only, and as a result it is Test runner agnostic. The assertions are a direct fork of the xUnit test assertions. This project was born because test runners Should be independent of the the assertions!\",\"DownloadCount\":11556,\"GalleryDetailsUrl\":\"https://www.nuget.org/packages/ShouldFluent/1.1.12.0\",\"IconUrl\":\"http://demo.com\",\"IsLatestVersion\":false,\"IsAbsoluteLatestVersion\":false,\"IsPrerelease\":false,\"Language\":null,\"LastUpdated\":\"\\/Date(1380812832803)\\/\",\"Published\":\"\\/Date(1294387220183)\\/\",\"PackageHash\":\"ZtipI9Si2CbQAOBG4THSZzPd50gM7qFLyRiQG5qlhS08aK9Xv2i+Vp/WYK+wfhkpVYZ3duo4PjbTc92ndBn4Dw==\",\"PackageHashAlgorithm\":\"SHA512\",\"PackageSize\":\"23576\",\"ProjectUrl\":\"http://demo2.com\",\"ReportAbuseUrl\":\"https://www.nuget.org/package/ReportAbuse/ShouldFluent/1.1.12.0\",\"ReleaseNotes\":null,\"RequireLicenseAcceptance\":false,\"Summary\":\"The Should Assertion Library provides a set of extension methods for test assertions for AAA and BDD style tests. It provides assertions only, and as a result it is Test runner agnostic. The assertions are a direct fork of the xUnit test assertions. This project was born because test runners Should be independent of the the assertions!\",\"Tags\":null,\"Title\":\"ShouldFluent\",\"VersionDownloadCount\":10130,\"MinClientVersion\":null,\"LastEdited\":null,\"LicenseUrl\":\"\",\"LicenseNames\":null,\"LicenseReportUrl\":null}]}}";
+        private const string JSON = "{\"d\":{\"results\":[{\"__metadata\":{\"id\":\"https://www.nuget.org/api/v2/Packages(Id='ShouldFluent',Version='1.1.12.0')\",\"uri\":\"https://www.nuget.org/api/v2/Packages(Id='ShouldFluent',Version='1.1.12.0')\",\"type\":\"NuGetGallery.V2FeedPackage\",\"edit_media\":\"https://www.nuget.org/api/v2/Packages(Id='ShouldFluent',Version='1.1.12.0')/$value\",\"media_src\":\"https://www.nuget.org/api/v2/package/ShouldFluent/1.1.12.0\",\"content_type\":\"application/zip\"},\"Id\":\"ShouldFluent\",\"Version\":\"1.1.12.0\",\"Authors\":\"Tim Scott\",\"Copyright\":null,\"Created\":\"\\/Date(1294387219667)\\/\",\"Dependencies\":\"\",\"Description\":\"The Should Assertion Library provides a set of extension methods for test assertions for AAA and BDD style tests. It provides assertions only, and as a result it is Test runner agnostic. The assertions are a direct fork of the xUnit test assertions. This project was born because test runners Should be independent of the the assertions!\",\"DownloadCount\":11556,\"GalleryDetailsUrl\":\"https://www.nuget.org/packages/ShouldFluent/1.1.12.0\",\"IconUrl\":\"http://demo.com\",\"IsLatestVersion\":true,\"IsAbsoluteLatestVersion\":false,\"IsPrerelease\":false,\"Language\":null,\"LastUpdated\":\"\\/Date(1380812832803)\\/\",\"Published\":\"\\/Date(1294387220183)\\/\",\"PackageHash\":\"ZtipI9Si2CbQAOBG4THSZzPd50gM7qFLyRiQG5qlhS08aK9Xv2i+Vp/WYK+wfhkpVYZ3duo4PjbTc92ndBn4Dw==\",\"PackageHashAlgorithm\":\"SHA512\",\"PackageSize\":\"23576\",\"ProjectUrl\":\"http://demo2.com\",\"ReportAbuseUrl\":\"https://www.nuget.org/package/ReportAbuse/ShouldFluent/1.1.12.0\",\"ReleaseNotes\":null,\"RequireLicenseAcceptance\":false,\"Summary\":\"The Should Assertion Library provides a set of extension methods for test assertions for AAA and BDD style tests. It provides assertions only, and as a result it is Test runner agnostic. The assertions are a direct fork of the xUnit test assertions. This project was born because test runners Should be independent of the the assertions!\",\"Tags\":null,\"Title\":\"ShouldFluent\",\"VersionDownloadCount\":10130,\"MinClientVersion\":null,\"LastEdited\":null,\"LicenseUrl\":\"\",\"LicenseNames\":null,\"LicenseReportUrl\":null}]}}";
 
         public when_parsing_a_nuget_search_result()
         {
@@ -35,9 +35,21 @@ namespace OSSItPopular.Tests.Models
         }
 
         [Fact]
+        public void version_should_be_set()
+        {
+            Assert.Equal("1.1.12.0", _package.Version);
+        }
+
+        [Fact]
         public void authors_should_be_set()
         {
             Assert.Equal("Tim Scott", _package.Authors);
+        }
+
+        [Fact]
+        public void galleryDetailsUrl_detail_should_be_set()
+        {
+            Assert.Equal("https://www.nuget.org/packages/ShouldFluent/1.1.12.0", _package.Url);
         }
 
         [Fact]

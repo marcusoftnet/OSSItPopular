@@ -1,10 +1,10 @@
-<!doctype html>
+<html>
 <head>
     <title>OSS It Popular - real OSS numbers</title>
     <!-- Bootstrap -->
     <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.0-rc1/css/bootstrap.min.css">
 </head>
-<body data-ng-app="OssItPopular" data-ng-controller="GitHubController">
+<body data-ng-app="OssItPopular" data-ng-controller="OssItPopularController">
 
     <div class="container">
 
@@ -35,9 +35,9 @@
                 <div class="col-lg-6">
                     <div class="panel">
                         <div class="panel-heading">
-                            <h3 class="panel-title">GitHub Stats</h3>
+                            <h3 class="panel-title">GitHub</h3>
                         </div>
-                        <strong>{{gitHubDetails.FullName}}</strong>
+                        <a target="_blank" href="{{gitHubDetails.Url}}">{{gitHubDetails.FullName}}</a>
                         <ul>
                             <li>Score: {{gitHubDetails.Score}}</li>
                             <li>Forks: {{gitHubDetails.NumberOfForks}}</li>
@@ -51,9 +51,28 @@
                 <div class="col-lg-6">
                     <div class="panel">
                         <div class="panel-heading">
-                            <h3 class="panel-title">Nuget Stats</h3>
+                            <h3 class="panel-title">Nuget</h3>
                         </div>
-                        Panel content
+                        <ul data-ng-if="NuGetResult.MoreThanOneResult == true">
+                            <li data-ng-repeat="p in NuGetResult.NugetPackages">
+                                <button type="button"
+                                    class="btn btn-link"
+                                    data-ng-click="setCurrentNuGetPackage(p)">
+                                    Show {{p.Title}}
+                                </button>
+                                ({{p.Version}})
+                            </li>
+                        </ul>
+                        <ul data-ng-if="NuGetResult.MoreThanOneResult == false">
+                            <li><a target="_blank" href="{{NuGetResult.NugetPackage.Url}}">{{NuGetResult.NugetPackage.Title}}</a></li>
+                            <li>Version: {{NuGetResult.NugetPackage.Version}}</li>
+                            <li>Authors: {{NuGetResult.NugetPackage.Authors}}</li>
+                            <li>Created: {{formatDate(NuGetResult.NugetPackage.Created)}}</li>
+                            <li>Published: {{formatDate(NuGetResult.NugetPackage.Published)}}</li>
+                            <li>ProjectUrl: {{NuGetResult.NugetPackage.ProjectUrl}}</li>
+                            <li>Number of downloads (version): {{NuGetResult.NugetPackage.VersionNumberOfDownloads}}</li>
+                            <li>Number of downloads (total): {{NuGetResult.NugetPackage.TotalNumberOfDownloads}}</li>
+                        </ul>
                     </div>
                 </div>
             </div>
@@ -90,8 +109,7 @@
     <script type="text/javascript" src="http://codeorigin.jquery.com/jquery-1.10.2.min.js"></script>
 
     <!-- Angular -->
-    <script type="text/javascript" src="http://code.angularjs.org/angular-1.0.0rc4.min.js"></script>
-    <script type="text/javascript" src="http://code.angularjs.org/angular-resource-1.0.0rc4.min.js"></script>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.1.5/angular.min.js"></script>
 
     <!-- Bootstrap -->
     <script type="text/javascript" src="http://netdna.bootstrapcdn.com/bootstrap/3.0.0-rc1/js/bootstrap.min.js"></script>

@@ -10,8 +10,7 @@ namespace OSSItPopular.Tests.Models.Twitter
 {
     public class when_creating_a_twitter_request
     {
-        private const string KEY = "1234567890";
-        private const string SECRET = "0987654321";
+
         private TwitterClient _twitterClient;
 
         public when_creating_a_twitter_request()
@@ -20,13 +19,34 @@ namespace OSSItPopular.Tests.Models.Twitter
         }
 
         [Fact]
-        public void the_key_and_secret_should_be_URL_encoded_and_concatenated_with_colon()
+        public void the_key_and_secret_should_be_URL_encoded()
         {
-            var urlEncoded = _twitterClient.GetOAuthKey(KEY, SECRET);
+            // Arrange
+            var key = "ö123";
+            var secret = "321ö";
 
-            Assert.Equal("1234567890:0987654321", urlEncoded);
+            // Act
+            var encoded = _twitterClient.GetOAuthKey(key, secret);
+
+            // Assert
+            Assert.Equal("JWMzJWI2MTIzOjMyMSVjMyViNg==", encoded);
         }
-        //consumer key and the consumer secret 
+
+
+        [Fact]
+        public void the_key_and_secret_should_be_base64_encoding()
+        {
+            // Arrange
+            var key = "123";
+            var secret = "321";
+
+            // Act
+            var encoded = _twitterClient.GetOAuthKey(key, secret);
+
+            // Assert
+            Assert.Equal("MTIzOjMyMQ==", encoded);
+        }
+
     }
 
     public class TwitterClient
@@ -36,7 +56,15 @@ namespace OSSItPopular.Tests.Models.Twitter
             var urlEndcodedKey = HttpUtility.UrlEncode(key);
             var urlEndcodedSecret = HttpUtility.UrlEncode(secret);
 
-            return string.Format("{0}:{1}", urlEndcodedKey, urlEndcodedSecret);
+            var concatenated = string.Format("{0}:{1}", urlEndcodedKey, urlEndcodedSecret);
+
+            return Base64Encode(concatenated);
+        }
+
+        private static string Base64Encode(string plainText)
+        {
+            var plainTextBytes = System.Text.Encoding.UTF8.GetBytes(plainText);
+            return System.Convert.ToBase64String(plainTextBytes);
         }
     }
 }

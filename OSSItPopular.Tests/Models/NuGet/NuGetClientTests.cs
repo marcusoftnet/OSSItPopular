@@ -2,11 +2,11 @@
 using OSSItPopular.Web.Support;
 using Xunit;
 
-namespace OSSItPopular.Tests.Models
+namespace OSSItPopular.Tests.Models.NuGet
 {
     public class NuGetClientTests
     {
-        [Fact]
+        [Fact(Skip="Integrationtest")]
         public void should_get_package_results_for_1_known_package_name()
         {
             // Arrange
@@ -21,7 +21,7 @@ namespace OSSItPopular.Tests.Models
             Assert.Equal(packageName, packageResult.Packages[0].Title);
         }
 
-        [Fact]
+        [Fact(Skip = "Integrationtest")]
         public void should_get_package_results_with_many_hits()
         {
             // Arrange

@@ -2,7 +2,7 @@
 using OSSItPopular.Web.Models;
 using Xunit;
 
-namespace OSSItPopular.Tests.Models
+namespace OSSItPopular.Tests.Models.NuGet
 {
     public class when_parsing_a_nuget_search_result
     {

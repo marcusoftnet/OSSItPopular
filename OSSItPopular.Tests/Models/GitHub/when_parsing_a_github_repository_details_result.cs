@@ -2,7 +2,7 @@
 using Should.Fluent;
 using Xunit;
 
-namespace OSSItPopular.Tests.Models
+namespace OSSItPopular.Tests.Models.GitHub
 {
     public class when_parsing_a_github_repository_details_result
     {

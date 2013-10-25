@@ -67,10 +67,11 @@
     <Compile Include="..\SolutionInfo.cs">
       <Link>Properties\SolutionInfo.cs</Link>
     </Compile>
-    <Compile Include="Models\when_parsing_github_search_result_json.cs" />
-    <Compile Include="Models\when_parsing_a_nuget_search_result.cs" />
-    <Compile Include="Models\when_parsing_a_github_repository_details_result.cs" />
-    <Compile Include="Models\NuGetClientTests.cs" />
+    <Compile Include="Models\Twitter\when_creating_a_twitter_request.cs" />
+    <Compile Include="Models\GitHub\when_parsing_github_search_result_json.cs" />
+    <Compile Include="Models\NuGet\when_parsing_a_nuget_search_result.cs" />
+    <Compile Include="Models\GitHub\when_parsing_a_github_repository_details_result.cs" />
+    <Compile Include="Models\NuGet\NuGetClientTests.cs" />
     <Compile Include="Modules\GitHubModuleTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

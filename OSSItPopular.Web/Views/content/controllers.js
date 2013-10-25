@@ -1,12 +1,14 @@
-﻿function OssItPopularController($scope, $log, OssItPopularService) {
+﻿function OssItPopularController($scope, $log, OssItPopularMockService) {
+
+    var service = OssItPopularMockService;
 
     $scope.searchRepos = function () {
-        OssItPopularService.SearchRepositoriesByName($scope.searchString, SearchReposByNameSuccess);
+        service.SearchRepositoriesByName($scope.searchString, SearchReposByNameSuccess);
     };
     
     $scope.getAllData = function (repo) {
-        OssItPopularService.GetRepositoryDetails(repo.Name, GetRepositoryDetailsSuccess);
-        OssItPopularService.GeNuGetPackage(repo.Name, GeNuGetPackageSuccess);
+        service.GetRepositoryDetails(repo.Name, GetRepositoryDetailsSuccess);
+        service.GeNuGetPackage(repo.Name, GeNuGetPackageSuccess);
     };
 
     $scope.setCurrentNuGetPackage = function (nugetPackage) {

@@ -1,8 +1,12 @@
 <html>
 <head>
     <title>OSS It Popular - real OSS numbers</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
     <!-- Bootstrap -->
-    <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.0-rc1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="content/style.css">
 </head>
 <body data-ng-app="OssItPopular" data-ng-controller="OssItPopularController">
 
@@ -11,87 +15,100 @@
         <div class="jumbotron">
             <h1>Oss it popular?</h1>
             <p>A single page that helps you to answer the question if a OSS project is popular, used, known</p>
-            <form class="form-inline">
+            <form>
                 <div class="form-group">
-                    <label for="inputEmail" class="col-lg-2 control-label">OSS name:</label>
-                    <div class="col-lg-8">
+                    <label for="inputEmail" class="col-xs-12 col-sm-3 col-lg-2 control-label">OSS name:</label>
+                    <div class="col-xs-9 col-sm-7 col-lg-6">
                         <input type="text" class="form-control" id="ossSearchQuery" placeholder="ex. NancyFx" data-ng-model="searchString">
                     </div>
                     <button type="button" class="btn btn-primary" data-ng-click="searchRepos()">Search</button>
-                    <ul>
-                        <li data-ng-repeat="repo in repositories">
-                            <a href="{{repo.Url}}">{{repo.FullName}}</a>
-                            <button type="button" class="btn btn-success" data-ng-click="getAllData(repo)">Is it popular?</button>
-                        </li>
-                    </ul>
                 </div>
             </form>
         </div>
 
         <div class="body-content">
 
+            <div class="row">
+                <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3" data-ng-repeat="repo in repositories">
+                    <div class="repo">
+                        <a href="{{repo.Url}}">{{repo.FullName}}</a>
+                        <button type="button" class="btn btn-success" data-ng-click="getAllData(repo)">Is it popular?</button>
+                    </div>
+                </div> 
+            </div>
+
+            <br/>
+
             <!-- Example row of columns -->
             <div class="row">
-                <div class="col-lg-6">
-                    <div class="panel">
+                <div class="col-xs-12 col-sm-6">
+                    <div class="panel panel-default">
                         <div class="panel-heading">
                             <h3 class="panel-title">GitHub</h3>
                         </div>
-                        <a target="_blank" href="{{gitHubDetails.Url}}">{{gitHubDetails.FullName}}</a>
-                        <ul>
-                            <li>Score: {{gitHubDetails.Score}}</li>
-                            <li>Forks: {{gitHubDetails.NumberOfForks}}</li>
-                            <li>Wiki: {{gitHubDetails.HasWiki}}</li>
-                            <li>Number of watchers: {{gitHubDetails.NumberOfWatchers}}</li>
-                            <li>Has issues: {{gitHubDetails.HasIssues}}</li>
-                            <li>Number of issues: {{gitHubDetails.NumberOfOpenIssues}}</li>
-                        </ul>
+                        <div class="panel-body">
+                            <a target="_blank" href="{{gitHubDetails.Url}}">{{gitHubDetails.FullName}}</a>
+                            <ul>
+                                <li>Score: {{gitHubDetails.Score}}</li>
+                                <li>Forks: {{gitHubDetails.NumberOfForks}}</li>
+                                <li>Wiki: {{gitHubDetails.HasWiki}}</li>
+                                <li>Number of watchers: {{gitHubDetails.NumberOfWatchers}}</li>
+                                <li>Has issues: {{gitHubDetails.HasIssues}}</li>
+                                <li>Number of issues: {{gitHubDetails.NumberOfOpenIssues}}</li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
-                <div class="col-lg-6">
-                    <div class="panel">
+                <div class="col-xs-12 col-sm-6">
+                    <div class="panel panel-default">
                         <div class="panel-heading">
                             <h3 class="panel-title">Nuget</h3>
                         </div>
-                        <ul data-ng-if="NuGetResult.MoreThanOneResult == true">
-                            <li data-ng-repeat="p in NuGetResult.NugetPackages">
-                                <button type="button"
-                                    class="btn btn-link"
-                                    data-ng-click="setCurrentNuGetPackage(p)">
-                                    Show {{p.Title}}
-                                </button>
-                                ({{p.Version}})
-                            </li>
-                        </ul>
-                        <ul data-ng-if="NuGetResult.MoreThanOneResult == false">
-                            <li><a target="_blank" href="{{NuGetResult.NugetPackage.Url}}">{{NuGetResult.NugetPackage.Title}}</a></li>
-                            <li>Version: {{NuGetResult.NugetPackage.Version}}</li>
-                            <li>Authors: {{NuGetResult.NugetPackage.Authors}}</li>
-                            <li>Created: {{formatDate(NuGetResult.NugetPackage.Created)}}</li>
-                            <li>Published: {{formatDate(NuGetResult.NugetPackage.Published)}}</li>
-                            <li>ProjectUrl: {{NuGetResult.NugetPackage.ProjectUrl}}</li>
-                            <li>Number of downloads (version): {{NuGetResult.NugetPackage.VersionNumberOfDownloads}}</li>
-                            <li>Number of downloads (total): {{NuGetResult.NugetPackage.TotalNumberOfDownloads}}</li>
-                        </ul>
+                        <div class="panel-body">
+                            <ul data-ng-if="NuGetResult.MoreThanOneResult == true">
+                                <li data-ng-repeat="p in NuGetResult.NugetPackages">
+                                    <button type="button"
+                                        class="btn btn-link"
+                                        data-ng-click="setCurrentNuGetPackage(p)">
+                                        Show {{p.Title}}
+                                    </button>
+                                    ({{p.Version}})
+                                </li>
+                            </ul>
+                            <ul data-ng-if="NuGetResult.MoreThanOneResult == false">
+                                <li><a target="_blank" href="{{NuGetResult.NugetPackage.Url}}">{{NuGetResult.NugetPackage.Title}}</a></li>
+                                <li>Version: {{NuGetResult.NugetPackage.Version}}</li>
+                                <li>Authors: {{NuGetResult.NugetPackage.Authors}}</li>
+                                <li>Created: {{formatDate(NuGetResult.NugetPackage.Created)}}</li>
+                                <li>Published: {{formatDate(NuGetResult.NugetPackage.Published)}}</li>
+                                <li>ProjectUrl: {{NuGetResult.NugetPackage.ProjectUrl}}</li>
+                                <li>Number of downloads (version): {{NuGetResult.NugetPackage.VersionNumberOfDownloads}}</li>
+                                <li>Number of downloads (total): {{NuGetResult.NugetPackage.TotalNumberOfDownloads}}</li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
             </div>
 
             <div class="row">
-                <div class="col-lg-6">
-                    <div class="panel">
+                <div class="col-xs-12 col-sm-6">
+                    <div class="panel panel-default">
                         <div class="panel-heading">
                             <h3 class="panel-title">Twitter Stats</h3>
                         </div>
-                        Panel content
+                        <div class="panel-body">
+                            Panel content
+                        </div>
                     </div>
                 </div>
-                <div class="col-lg-6">
-                    <div class="panel">
+                <div class="col-xs-12 col-sm-6">
+                    <div class="panel panel-default">
                         <div class="panel-heading">
                             <h3 class="panel-title">Web presence</h3>
                         </div>
-                        Panel content
+                        <div class="panel-body">
+                            Panel content
+                        </div>
                     </div>
                 </div>
             </div>

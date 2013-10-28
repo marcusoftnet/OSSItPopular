@@ -71,10 +71,11 @@
     <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\content\app.js" />
-    <Content Include="Views\content\controllers.js" />
-    <Content Include="Views\content\mockservices.js" />
-    <Content Include="Views\content\services.js" />
+    <Content Include="content\app.js" />
+    <Content Include="content\controllers.js" />
+    <Content Include="content\mockservices.js" />
+    <Content Include="content\services.js" />
+    <Content Include="content\style.css" />
     <Content Include="Views\index.html" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>

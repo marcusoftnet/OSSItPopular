@@ -1,6 +1,6 @@
-﻿function OssItPopularController($scope, $log, OssItPopularMockService) {
+﻿function OssItPopularController($scope, $log, OssItPopularService) {
 
-    var service = OssItPopularMockService;
+    var service = OssItPopularService;
 
     $scope.searchRepos = function () {
         service.SearchRepositoriesByName($scope.searchString, SearchReposByNameSuccess);

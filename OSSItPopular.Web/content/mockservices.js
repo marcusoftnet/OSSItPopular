@@ -1,4 +1,4 @@
-var serviceModule = angular.module("OssItPopular.services", []);
+/*var serviceModule = angular.module("OssItPopular.services", []);
 
 serviceModule.factory("OssItPopularMockService", function ($http, $log) {
 
@@ -23,4 +23,4 @@ serviceModule.factory("OssItPopularMockService", function ($http, $log) {
 
     return service;
 });
-
+*/

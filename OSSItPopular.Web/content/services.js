@@ -27,7 +27,7 @@ serviceModule.factory("OssItPopularService", function ($http, $log) {
         getUrl(url, callback);
     };
 
-    service.GeNuGetPackage = function(packageName, callback) {
+    service.GeNuGetPackage = function(packageName, callback) { 
         var url = '/NuGet/package/' + packageName;
         $log.log("Getting NuGet package for from URL:" + url);
         getUrl(url, callback);

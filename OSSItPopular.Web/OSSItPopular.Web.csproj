@@ -93,6 +93,7 @@
     <Compile Include="Models\GithubRepositorySearchResult.cs" />
     <Compile Include="Models\NuGetPackage.cs" />
     <Compile Include="Models\NuGetSearchResult.cs" />
+    <Compile Include="Models\TwitterSearchResult.cs" />
     <Compile Include="Modules\GitHubModule.cs" />
     <Compile Include="Modules\HomeModule.cs" />
     <Compile Include="Modules\NuGetModule.cs" />

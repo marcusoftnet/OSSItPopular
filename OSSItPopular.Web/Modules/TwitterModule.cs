@@ -15,25 +15,31 @@ namespace OSSItPopular.Web.Modules
         {
             Get["/twitter/{search}"] = parameters =>
             {
-                string searchterm = parameters.Search;
+                var result = SearchTwitter(parameters.Search);
 
-                var result = (from search in CurrentTwitterContext.Search
-                              where search.Type == SearchType.Search &&
-                                    search.Query == searchterm
-                              select search)
-                            .SingleOrDefault();
-
-                var resultList = result.Statuses.Select(
-                    status => new TwitterSearchResult
-                    {
-                        ID = status.ID,
-                        Link = status.Source,
-                        CreatedAt = status.CreatedAt,
-                        Text = status.Text
-                    });
-
-                return resultList.ToList();
+                return ParseIntoTwitterResultEntities(result).ToList();
             };
+        }
+
+        private static IEnumerable<TwitterSearchResult> ParseIntoTwitterResultEntities(Search result)
+        {
+            return result.Statuses.Select(
+                status => new TwitterSearchResult
+                {
+                    ID = status.ID,
+                    Link = status.Source,
+                    CreatedAt = status.CreatedAt,
+                    Text = status.Text
+                });
+        }
+
+        private Search SearchTwitter(string searchterm)
+        {
+            return (from search in CurrentTwitterContext.Search
+                where search.Type == SearchType.Search &&
+                      search.Query == searchterm
+                select search)
+                .SingleOrDefault();
         }
 
         private TwitterContext _twitterContext;
@@ -51,10 +57,10 @@ namespace OSSItPopular.Web.Modules
                 {
                     Credentials = new SingleUserInMemoryCredentials
                     {
-                        ConsumerKey = ConfigurationManager.AppSettings["twitterConsumerKey"],
-                        ConsumerSecret = ConfigurationManager.AppSettings["twitterConsumerSecret"],
-                        TwitterAccessToken = ConfigurationManager.AppSettings["twitterAccessToken"],
-                        TwitterAccessTokenSecret = ConfigurationManager.AppSettings["twitterAccessTokenSecret"]
+                        ConsumerKey = ConfigurationManager.AppSettings["TwitterConsumerKey"],
+                        ConsumerSecret = ConfigurationManager.AppSettings["TwitterConsumerSecret"],
+                        TwitterAccessToken = ConfigurationManager.AppSettings["TwitterAccessToken"],
+                        TwitterAccessTokenSecret = ConfigurationManager.AppSettings["TwitterAccessTokenSecret"]
                     }
                 };
             }
